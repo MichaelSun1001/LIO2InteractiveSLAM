@@ -68,7 +68,7 @@ Create a `build` folder:
 ```
 mkdir build
 ```
-Run the `compile.sh` script for each Building.
+Run the `compile.sh` script for each building.
 ```
 ./compile.sh
 ```
