@@ -1,22 +1,12 @@
 {
-    // true代表从rosbag文件中读取里程计数据，false代表从里程计文件夹中读取里程计数据
     "from_rosbag": true,
-    // rosbag路径
-    "bag_path": "/media/liar/Elements3/Odo2Map/test/20250303/pv.bag",
-    // 里程计文件夹路径
-    "odom_directory": "/media/liar/Elements3/Odo2Map/test/20250303/temp_odom",
-    // 降采样分辨率
+    "bag_path": "/xx/xxx.bag",
+    "odom_directory": "/xx/xxx",
     "downsample_resolution": 0.1,
-    // false代表不降采样，true代表降采样
     "is_downsample": false,
-    // 关键帧距离差，单位“米”
     "keyframe_delta_x": 10,
-    // 关键帧角度差,单位“度”
     "keyframe_delta_angle": 90,
-    // 融合关键帧数量n,注意是前后各取n帧，所以实际融合数量为n * 2
     "friends_num": 5,
-    // 0代表保存为interactive slam地图, 1代表保存为站点地图
     "save_mode": 0,
-    // 存地图路径
-    "save_path": "/media/liar/Elements3/Odo2Map/test/20250303/temp_map"
+    "save_path": "/yy/yyy"
 }
