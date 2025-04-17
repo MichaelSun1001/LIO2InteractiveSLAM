@@ -1,3 +1,4 @@
+The Chinese version of the README is [HERE](./README_CN.md).
 ## 0. Introduction
 [interactive_slam](https://github.com/koide3/interactive_slam) is an excellent semi-automatic map optimization tool, but it is tightly coupled with [hdl_graph_slam](https://github.com/koide3/hdl_graph_slam), it is compatible with the LOAM framework but does not support mainstream LIO systems such as FAST-LIO2, which limits its applicability.
 
