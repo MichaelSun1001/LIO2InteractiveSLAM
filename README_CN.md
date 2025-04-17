@@ -1,5 +1,5 @@
 ## 0. 介绍
-[interactive_slam](https://github.com/koide3/interactive_slam)是一个非常优秀的半自动地图优化工具，但是它与[hdl_graph_slam](https://github.com/koide3/hdl_graph_slam)紧耦合，这限制了它的应用。
+[interactive_slam](https://github.com/koide3/interactive_slam)是一个非常优秀的半自动地图优化工具，但是它与[hdl_graph_slam](https://github.com/koide3/hdl_graph_slam)紧耦合，兼容LOAM框架，但是不支持[FAST-LIO2](https://github.com/hku-mars/FAST_LIO)等目前主流的LIO，这限制了它的应用。
 
 本工具可将任意激光雷达里程计（例如[FAST-LIO2](https://github.com/hku-mars/FAST_LIO)、[PV-LIO](https://github.com/HViktorTsoi/PV-LIO)和[Point-LIO](https://github.com/hku-mars/Point-LIO.git)等）生成的点云和轨迹数据转换为interactive_slam所需的地图格式，并且可以进行筛选关键帧、点云降采样、点云合并等预处理操作。
 
@@ -99,9 +99,11 @@ mkdir build
     "save_path": "/yy/yyy"
 }
 ```
+rosbag格式、里程计文件夹格式和地图格式见[wiki](https://github.com/deepglint/LIO2InteractiveSLAM/wiki/LIO2InteractiveSLAM-Guide)
+
 ## 4. 有可视化界面运行
 运行脚本interactive_interface.sh
 ```
 ./interactive_interface.sh
 ```
-可视化界面具体操作见wiki
+可视化界面具体操作见[wiki](https://github.com/deepglint/LIO2InteractiveSLAM/wiki/LIO2InteractiveSLAM-Guide)
