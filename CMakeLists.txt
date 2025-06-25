@@ -19,8 +19,12 @@ find_package(PCL REQUIRED)
 find_package(Eigen3 REQUIRED)
 find_package(Boost REQUIRED filesystem program_options)
 
-# 手动添加 JsonCpp 头文件路径和库
-# 头文件位于 /usr/include/jsoncpp
+# JsonCpp: system-installed (libjsoncpp-dev)
+# we'll link the 'jsoncpp' library directly
+find_package(G2O REQUIRED)
+include_directories(SYSTEM ${G2O_INCLUDE_DIR} ${G2O_INCLUDE_DIRS})
+link_directories(${G2O_LIBRARY_DIRS})
+
 include_directories(
   ${PROJECT_SOURCE_DIR}/interactive_interface/include
   ${PROJECT_SOURCE_DIR}/interactive_interface/thirdparty/gl3w
@@ -35,11 +39,7 @@ include_directories(
   ${GLM_INCLUDE_DIRS}
   /usr/include/jsoncpp
 )
-link_directories(
-  ${G2O_LIBRARY_DIRS}
-)
 
-# imgui
 add_definitions(-DIMGUI_IMPL_OPENGL_LOADER_GL3W)
 
 # #########
@@ -75,20 +75,17 @@ add_library(guik STATIC
   interactive_interface/src/guik/projection_control.cpp
   interactive_interface/src/guik/imgui_application.cpp
 )
-
-target_link_libraries(guik
-  imgui
-)
+target_link_libraries(guik imgui)
 
 add_library(odometry2graph STATIC
   odometry2graph/src/odometry2graph.cpp
   odometry2graph/src/jsonconvert.cpp
 )
-
 target_link_libraries(odometry2graph
   ${PCL_LIBRARIES}
-  ${G2O_TYPES_DATA}
   ${G2O_CORE_LIBRARY}
+  ${G2O_STUFF_LIBRARY}
+  ${G2O_TYPES_DATA}
   ${G2O_TYPES_SLAM3D}
   ${OPENGL_LIBRARIES}
   ${catkin_LIBRARIES}
@@ -98,9 +95,7 @@ target_link_libraries(odometry2graph
 add_executable(test_odometry2graph
   test/test_odometry2graph.cpp
 )
-target_link_libraries(test_odometry2graph
-  odometry2graph
-)
+target_link_libraries(test_odometry2graph odometry2graph)
 
 add_executable(interactive_interface
   interactive_interface/src/interactive_interface.cpp
