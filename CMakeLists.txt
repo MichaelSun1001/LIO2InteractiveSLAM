@@ -5,8 +5,7 @@ set(CMAKE_BUILD_TYPE "Release")
 set(CMAKE_CXX_FLAGS "-std=c++17")
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_CURRENT_LIST_DIR}/cmake")
 
-
-find_package(catkin REQUIRED COMPONENTS 
+find_package(catkin REQUIRED COMPONENTS
   roscpp
   roslib
   rosbag
@@ -17,35 +16,35 @@ find_package(catkin REQUIRED COMPONENTS
 find_package(GLM REQUIRED)
 find_package(OpenGL REQUIRED)
 find_package(PCL REQUIRED)
-
 find_package(Eigen3 REQUIRED)
 find_package(Boost REQUIRED filesystem program_options)
 
-find_package(G2O REQUIRED)
-include_directories(SYSTEM ${G2O_INCLUDE_DIR} ${G2O_INCLUDE_DIRS})
-link_directories(${G2O_LIBRARY_DIRS})
-
+# 手动添加 JsonCpp 头文件路径和库
+# 头文件位于 /usr/include/jsoncpp
 include_directories(
-  interactive_interface/include
-  interactive_interface/thirdparty/gl3w
-  interactive_interface/thirdparty/imgui
-  interactive_interface/thirdparty/imgui/examples
-  interactive_interface/thirdparty/portable-file-dialogs
-  odometry2graph/include
+  ${PROJECT_SOURCE_DIR}/interactive_interface/include
+  ${PROJECT_SOURCE_DIR}/interactive_interface/thirdparty/gl3w
+  ${PROJECT_SOURCE_DIR}/interactive_interface/thirdparty/imgui
+  ${PROJECT_SOURCE_DIR}/interactive_interface/thirdparty/imgui/examples
+  ${PROJECT_SOURCE_DIR}/interactive_interface/thirdparty/portable-file-dialogs
+  ${PROJECT_SOURCE_DIR}/odometry2graph/include
   ${Boost_INCLUDE_DIRS}
   ${EIGEN3_INCLUDE_DIRS}
   ${PCL_INCLUDE_DIRS}
   ${catkin_INCLUDE_DIRS}
   ${GLM_INCLUDE_DIRS}
+  /usr/include/jsoncpp
+)
+link_directories(
+  ${G2O_LIBRARY_DIRS}
 )
 
 # imgui
 add_definitions(-DIMGUI_IMPL_OPENGL_LOADER_GL3W)
 
-###########
-## Build ##
-###########
-
+# #########
+# Build ##
+# #########
 add_library(imgui STATIC
   interactive_interface/thirdparty/gl3w/gl3w.c
   interactive_interface/thirdparty/imgui/imgui.cpp
@@ -77,6 +76,10 @@ add_library(guik STATIC
   interactive_interface/src/guik/imgui_application.cpp
 )
 
+target_link_libraries(guik
+  imgui
+)
+
 add_library(odometry2graph STATIC
   odometry2graph/src/odometry2graph.cpp
   odometry2graph/src/jsonconvert.cpp
@@ -89,20 +92,22 @@ target_link_libraries(odometry2graph
   ${G2O_TYPES_SLAM3D}
   ${OPENGL_LIBRARIES}
   ${catkin_LIBRARIES}
+  jsoncpp
 )
 
 add_executable(test_odometry2graph
   test/test_odometry2graph.cpp
 )
+target_link_libraries(test_odometry2graph
+  odometry2graph
+)
 
 add_executable(interactive_interface
   interactive_interface/src/interactive_interface.cpp
 )
-
-target_link_libraries(test_odometry2graph odometry2graph)
-
-target_link_libraries(interactive_interface 
+target_link_libraries(interactive_interface
   odometry2graph
   glfw
   guik
-  imgui)
+  imgui
+)

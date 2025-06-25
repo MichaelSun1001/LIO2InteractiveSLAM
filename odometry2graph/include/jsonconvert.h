@@ -9,7 +9,7 @@
 #include <Eigen/Dense>
 #include <Eigen/StdVector>
 
-#include <json/json.h>
+#include <jsoncpp/json/json.h>
 
 typedef Eigen::Matrix<double, 6, 6> Matrix6d;
 typedef Eigen::Matrix<double, 6, 1> Vector6d;
@@ -32,16 +32,16 @@ namespace jsonconvert
                                   Json::Value &value);
 
     /// @brief 将json转为matrix4d
-    /// @param mat 
-    /// @param value 
-    /// @return 
+    /// @param mat
+    /// @param value
+    /// @return
     bool EigenMatrix4dFromJsonArray(Eigen::Matrix4d &mat,
                                     const Json::Value &value);
 
     /// @brief 将matrix4d转为json
-    /// @param mat 
-    /// @param value 
-    /// @return 
+    /// @param mat
+    /// @param value
+    /// @return
     bool EigenMatrix4dToJsonArray(const Eigen::Matrix4d &mat,
                                   Json::Value &value);
 
