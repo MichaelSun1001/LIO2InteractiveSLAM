@@ -1,12 +1,12 @@
 {
     "from_rosbag": true,
-    "bag_path": "/xx/xxx.bag",
-    "odom_directory": "/xx/xxx",
-    "downsample_resolution": 0.1,
+    "bag_path": "/home/sax/interactive_map/test_interface.bag",
+    "odom_directory": "/home/sax/interactive_map/test_interface_odom",
+    "downsample_resolution": 2.0,
     "is_downsample": false,
     "keyframe_delta_x": 10,
-    "keyframe_delta_angle": 90,
+    "keyframe_delta_angle": 20,
     "friends_num": 5,
     "save_mode": 0,
-    "save_path": "/yy/yyy"
+    "save_path": "/home/sax/interactive_map/test_interface"
 }
