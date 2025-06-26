@@ -10,3 +10,8 @@ Note:
 1、巨离谱，如果使用sudo ./run.sh就会报错，不能加sudo
 2、FAST-LIO的bag 录制两个话题：/cloud_registered_body /Odometry
 3、使用命令./run.sh将bag转成interactive_slam可以处理的两种格式：Odometry/Graph directory structure，其中Odometry这种格式需要使用rosrun interactive_slam odometry2graph命令转换成Graph格式才能被interactive_slam使用。
+
+
+./run.sh
+
+./interactive_interface.sh
