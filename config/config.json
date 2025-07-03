@@ -1,12 +1,12 @@
 {
     "from_rosbag": true,
-    "bag_path": "/home/sax/interactive_map/test_interface.bag",
-    "odom_directory": "/home/sax/interactive_map/test_interface_odom",
+    "bag_path": "/home/sax/rosbags/DeepGlint/eight_floor.bag",
+    "odom_directory": "/home/sax/rosbags/DeepGlint/interactive_map/eight_floor_odom",
     "downsample_resolution": 2.0,
     "is_downsample": false,
     "keyframe_delta_x": 10,
     "keyframe_delta_angle": 20,
     "friends_num": 5,
     "save_mode": 0,
-    "save_path": "/home/sax/interactive_map/test_interface"
+    "save_path": "/home/sax/rosbags/DeepGlint/interactive_map/eight_floor"
 }
